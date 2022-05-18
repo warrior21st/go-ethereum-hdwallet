@@ -554,3 +554,7 @@ func (w *Wallet) deriveAddress(path accounts.DerivationPath) (common.Address, er
 func removeAtIndex(accts []accounts.Account, index int) []accounts.Account {
 	return append(accts[:index], accts[index+1:]...)
 }
+
+func (w *Wallet) DerivePrivateKey(path accounts.DerivationPath) (*ecdsa.PrivateKey, error) {
+	return w.derivePrivateKey(path)
+}
