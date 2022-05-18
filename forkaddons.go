@@ -46,7 +46,10 @@ func DerivePrivateKeys(mnemonic string, startIndex int, length int) []string {
 	for i := 0; i < 1000; i++ {
 		pathStr := fmt.Sprintf("m/44'/60'/0'/0/%d", i)
 		path := MustParseDerivationPath(pathStr)
-		privEcdsa, _ := wallet.DerivePrivateKey(path)
+		privEcdsa, err := wallet.DerivePrivateKey(path)
+		if err != nil {
+			panic(err)
+		}
 		privs[i] = ecdsaPrivateKeyToHex(privEcdsa)
 	}
 
